@@ -1,0 +1,41 @@
+/* reset */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+:root {
+	font-size: 62.5%;
+}
+
+[role='list'] {
+	list-style: none;
+}
+input,
+button {
+	font: inherit;
+}
+@media (prefers-reduced-motion: reduce) {
+	html:focus-within {
+		scroll-behavior: auto;
+	}
+
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+}
+/* custom properties */
+:root {
+}
+/* body setup */
+body {
+	font-family: 'Open Sans', sans-serif;
+}
