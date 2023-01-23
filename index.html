@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>calender</title>
+		<!-- custom css -->
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<main>
+			<section class="calender">
+				<div class="month">
+					<span class="icon-next"
+						><ion-icon name="chevron-forward-outline"></ion-icon
+					></span>
+					<h1>April 2023</h1>
+					<span class="icon-prev"
+						><ion-icon name="chevron-back-outline"></ion-icon
+					></span>
+				</div>
+
+				<ul class="day-name-list" role="list">
+					<li class="day-name">Mon</li>
+					<li class="day-name">Tue</li>
+					<li class="day-name">Wed</li>
+					<li class="day-name">thu</li>
+					<li class="day-name">Fri</li>
+					<li class="day-name">Sat</li>
+					<li class="day-name">Sun</li>
+				</ul>
+
+				<ul class="day-list" role="list">
+					<li class="day day_prev-month">29</li>
+					<li class="day">30</li>
+					<li class="day">31</li>
+					<li class="day">1</li>
+					<li class="day">2</li>
+					<li class="day">3</li>
+					<li class="day">4</li>
+					<li class="day">5</li>
+					<li class="day">6</li>
+					<li class="day">7</li>
+					<li class="day">8</li>
+					<li class="day day-active">9</li>
+					<li class="day">10</li>
+					<li class="day">11</li>
+					<li class="day">12</li>
+					<li class="day">13</li>
+					<li class="day">14</li>
+					<li class="day">15</li>
+					<li class="day">16</li>
+					<li class="day">17</li>
+					<li class="day">18</li>
+					<li class="day">19</li>
+					<li class="day">20</li>
+					<li class="day">21</li>
+					<li class="day">22</li>
+					<li class="day">23</li>
+					<li class="day">24</li>
+					<li class="day">25</li>
+					<li class="day">26</li>
+					<li class="day">27</li>
+					<li class="day">28</li>
+					<li class="day">29</li>
+					<li class="day">30</li>
+					<li class="day">31</li>
+					<li class="day day_next-month">1</li>
+				</ul>
+
+				<form>
+					<input
+						type="month"
+						placeholder="YYYY-MM"
+						name="gotoday"
+						id="gotoday"
+						aria-label="gotoday"
+						required
+						aria-required="true"
+					/>
+					<button type="submit">GO</button>
+				</form>
+			</section>
+			<section class="events">
+				<h2>
+					<span class="day-active_name">Wed</span>
+					<time datetime="" class="day-active_date">9 Aprile 2023</time>
+				</h2>
+				<section>
+					<ul class="event-list" role="list">
+						<li>
+							<h3>event header</h3>
+							<p>event description</p>
+						</li>
+						<li><h3>event header</h3></li>
+						<li><h3>event header</h3></li>
+						<li><h3>event header</h3></li>
+						<li><h3>event header</h3></li>
+					</ul>
+
+					<ul class="todo-list" role="list">
+						<li>
+							<h3>todo header</h3>
+							<p>todo description</p>
+						</li>
+						<li><h3>todo header</h3></li>
+						<li><h3>todo header</h3></li>
+						<li><h3>todo header</h3></li>
+						<li><h3>todo header</h3></li>
+					</ul>
+
+					<form action="">
+						<div>
+							<h3>Add event</h3>
+							<span class="icon-close">
+								<ion-icon name="close-outline"></ion-icon
+							></span>
+						</div>
+
+						<div>
+							<label for="event-name">Event name</label>
+							<input type="text" name="event-name" id="event-name" />
+						</div>
+						<div>
+							<label for="event-start">Event time from</label>
+							<input type="time" name="event-start" id="event-start" />
+						</div>
+						<div>
+							<label for="event-end">Event time to</label>
+							<input type="time" name="event-end" id="event-end" />
+						</div>
+						<button type="submit">Add Event</button>
+					</form>
+				</section>
+			</section>
+		</main>
+		<!-- ionic icons -->
+		<script
+			type="module"
+			src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+		></script>
+		<script
+			nomodule
+			src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+		></script>
+	</body>
+</html>
