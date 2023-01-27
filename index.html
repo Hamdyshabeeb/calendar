@@ -119,28 +119,33 @@
 						<li><h3>todo header</h3></li>
 					</ul>
 
-					<form action="">
-						<div>
-							<h3>Add event</h3>
-							<span class="icon-close">
-								<ion-icon name="close-outline"></ion-icon
-							></span>
+					<div class="add-event">
+						<div class="add-event_opener">
+							<ion-icon name="add-circle-outline"></ion-icon>
 						</div>
+						<form action="">
+							<div class="add-event_title">
+								<h3>Add event</h3>
+								<span class="icon-close">
+									<ion-icon name="close-outline"></ion-icon
+								></span>
+							</div>
 
-						<div>
-							<label for="event-name">Event name</label>
-							<input type="text" name="event-name" id="event-name" />
-						</div>
-						<div>
-							<label for="event-start">Event time from</label>
-							<input type="time" name="event-start" id="event-start" />
-						</div>
-						<div>
-							<label for="event-end">Event time to</label>
-							<input type="time" name="event-end" id="event-end" />
-						</div>
-						<button type="submit">Add Event</button>
-					</form>
+							<div>
+								<label for="event-name">Event name</label>
+								<input type="text" name="event-name" id="event-name" />
+							</div>
+							<div>
+								<label for="event-start">Event time from</label>
+								<input type="time" name="event-start" id="event-start" />
+							</div>
+							<div>
+								<label for="event-end">Event time to</label>
+								<input type="time" name="event-end" id="event-end" />
+							</div>
+							<button type="submit">Add Event</button>
+						</form>
+					</div>
 				</section>
 			</section>
 		</main>
