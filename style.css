@@ -18,6 +18,9 @@ input,
 button {
 	font: inherit;
 }
+button {
+	cursor: pointer;
+}
 @media (prefers-reduced-motion: reduce) {
 	html:focus-within {
 		scroll-behavior: auto;
@@ -34,8 +37,177 @@ button {
 }
 /* custom properties */
 :root {
+	/* colors */
+	--clr-primary: 270, 55%, 70%;
+
+	--clr-neutral-900: 228, 18%, 26%;
+	--clr-neutral-500: 240, 16%, 62%;
+	--clr-neutral-400: 0, 0%, 55%;
+	--clr-neutral-200: 227, 44%, 89%;
+	--clr-neutral-150: 0, 0%, 70%;
+	--clr-neutral-100: 0, 0%, 100%;
 }
 /* body setup */
 body {
 	font-family: 'Open Sans', sans-serif;
+	min-height: 100vh;
+	font-size: 1.6rem;
+	background-color: hsl(var(--clr-neutral-900));
+}
+
+main {
+	width: 95%;
+	max-width: 120rem;
+	margin: 2.5% auto;
+	display: grid;
+}
+
+.calender,
+.events {
+	padding: 1rem;
+}
+[class*='icon-'] {
+	padding: 1rem;
+	cursor: pointer;
+}
+/* calender */
+
+.calender {
+	background-color: hsl(var(--clr-neutral-100));
+	color: hsl(var(--clr-neutral-400));
+	border-radius: 5px;
+	position: relative;
+	margin-bottom: 6rem;
+}
+
+.calender::before,
+.calender::after {
+	content: '';
+	position: absolute;
+	width: 97%;
+	height: 100%;
+	background-color: hsla(var(--clr-neutral-150));
+	border-radius: 5px;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: -1;
+}
+.calender::before {
+	bottom: -8px;
+}
+.calender::after {
+	width: 94%;
+	z-index: -2;
+	background-color: hsla(var(--clr-neutral-150), 0.7);
+
+	bottom: -16px;
+}
+.month {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 1rem 0 2rem;
+}
+
+.month h1 {
+	font-size: 1.8rem;
+	font-weight: 400;
+}
+
+.day-name-list {
+	display: flex;
+	justify-content: space-between;
+	text-align: center;
+	font-size: 1.2rem;
+	margin-bottom: 1rem;
+}
+
+.day-name-list li {
+	width: calc(100% / 7);
+}
+
+.day-list {
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
+	grid-auto-rows: 1fr;
+	border: 1px solid hsl(var(--clr-neutral-200), 0.2);
+	color: hsl(var(--clr-neutral-500));
+	border-bottom: 0;
+	margin-bottom: 2rem;
+	font-size: 1.1rem;
+}
+
+.day-list li {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-bottom: 1px solid hsl(var(--clr-neutral-200), 0.2);
+	padding-block: 0.2rem;
+	cursor: pointer;
+	position: relative;
+}
+
+.day-list li:not(:nth-child(7n)) {
+	border-right: 1px solid hsl(var(--clr-neutral-200), 0.2);
+}
+
+.day_next-month,
+.day_prev-month {
+	color: hsla(var(--clr-neutral-500), 0.5);
+}
+.day_active,
+.day_today {
+	font-size: 1.4rem;
+}
+.day_active {
+	--clr: var(--clr-neutral-100);
+	color: hsl(var(--clr, --clr-));
+	background-color: hsl(var(--clr-primary));
+	box-shadow: 0 0 3px 1px hsla(var(--clr-primary), 0.5);
+}
+
+.day_today {
+	color: hsl(var(--clr, var(--clr-primary)));
+}
+
+.day:is(:hover, :focus-visible) {
+	--clr: var(--clr-neutral-100);
+	color: hsl(var(--clr));
+	background-color: hsl(var(--clr-primary));
+}
+
+.day[data-event]:before {
+	content: '';
+	position: absolute;
+	width: 70%;
+	bottom: 5%;
+	height: 2px;
+	background-color: hsl(var(--clr, var(--clr-primary)));
+	border-radius: 100vmax;
+}
+form.goto-month {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	margin-bottom: 1rem;
+}
+form.goto-month * {
+	background-color: transparent;
+	border: 1px solid hsl(var(--clr-neutral-400), 0.5);
+	font-size: 1.1rem;
+	padding: 0.3rem 0.5rem;
+	color: hsla(var(--clr-neutral-400), 0.5);
+}
+
+.goto-month input {
+	border-radius: 5px 0 0 5px;
+	width: 50%;
+}
+.goto-month button:nth-child(2) {
+	border-radius: 0 5px 5px 0;
+	border-left: 0;
+}
+.goto-month button:last-child {
+	margin-left: auto;
+	border-radius: 5px;
 }
