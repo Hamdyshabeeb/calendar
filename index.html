@@ -92,56 +92,64 @@
 				</form>
 			</section>
 			<section class="events">
-				<h2>
+				<h2 class="events-title">
 					<span class="day-active_name">Wed</span>
 					<time datetime="" class="day-active_date">9 Aprile 2023</time>
 				</h2>
 				<section>
 					<ul class="event-list" role="list">
 						<li class="event">
-							<p class="event-description">feet the animals</p>
+							<p class="event-description">
+								feet the animals and birds in the animal area
+							</p>
 							<div class="event-time">
-								<time class="event-time_start" datetime="12:00">12PM</time>
-								<span><ion-icon name="remove-outline"></ion-icon></span>
-								<time class="event-time_end" datetime="13:00">01PM</time>
+								<time class="event-time_start" datetime="12:00">12:00 PM</time>
+								<span class="icon-separator"
+									><ion-icon name="remove-outline"></ion-icon
+								></span>
+								<time class="event-time_end" datetime="13:00">01:00 PM</time>
 							</div>
 						</li>
 						<li class="event">
-							<p class="event-description">feet the animals</p>
+							<p class="event-description">
+								feet the animals and birds in the big area
+							</p>
 							<div class="event-time">
-								<time class="event-time_start" datetime="12:00">12PM</time>
-								<span><ion-icon name="remove-outline"></ion-icon></span>
-								<time class="event-time_end" datetime="13:00">01PM</time>
+								<time class="event-time_start" datetime="12:00">12:00 PM</time>
+								<span class="icon-separator"
+									><ion-icon name="remove-outline"></ion-icon
+								></span>
+								<time class="event-time_end" datetime="13:00">01:00 PM</time>
 							</div>
 						</li>
 						<li class="event">
-							<p class="event-description">feet the animals</p>
+							<p class="event-description">
+								feet the animals and birds in the animal area
+							</p>
 							<div class="event-time">
-								<time class="event-time_start" datetime="12:00">12PM</time>
-								<span><ion-icon name="remove-outline"></ion-icon></span>
-								<time class="event-time_end" datetime="13:00">01PM</time>
+								<time class="event-time_start" datetime="12:00">12:00 PM</time>
+								<span class="icon-separator"
+									><ion-icon name="remove-outline"></ion-icon
+								></span>
+								<time class="event-time_end" datetime="13:00">01:00 PM</time>
 							</div>
 						</li>
 						<li class="event">
-							<p class="event-description">feet the animals</p>
+							<p class="event-description">
+								feet the animals and birds in the animal area
+							</p>
 							<div class="event-time">
-								<time class="event-time_start" datetime="12:00">12PM</time>
-								<span><ion-icon name="remove-outline"></ion-icon></span>
-								<time class="event-time_end" datetime="13:00">01PM</time>
-							</div>
-						</li>
-						<li class="event">
-							<p class="event-description">feet the animals</p>
-							<div class="event-time">
-								<time class="event-time_start" datetime="12:00">12PM</time>
-								<span><ion-icon name="remove-outline"></ion-icon></span>
-								<time class="event-time_end" datetime="13:00">01PM</time>
+								<time class="event-time_start" datetime="12:00">12:00 PM</time>
+								<span class="icon-separator"
+									><ion-icon name="remove-outline"></ion-icon
+								></span>
+								<time class="event-time_end" datetime="13:00">01:00 PM</time>
 							</div>
 						</li>
 					</ul>
 
 					<div class="add-event">
-						<div class="add-event_opener">
+						<div class="icon-add-event_opener">
 							<ion-icon name="add-circle-outline"></ion-icon>
 						</div>
 						<form action="">
@@ -152,17 +160,27 @@
 								></span>
 							</div>
 
-							<div>
-								<label for="event-name">Event name</label>
-								<input type="text" name="event-name" id="event-name" />
+							<div class="add-event_info">
+								<input
+									type="text"
+									name="event-name"
+									id="event-name"
+									placeholder="Event name"
+									required
+								/>
 							</div>
-							<div>
+							<div class="add-event_info">
+								<input
+									type="time"
+									name="event-start"
+									id="event-start"
+									required
+								/>
 								<label for="event-start">Event time from</label>
-								<input type="time" name="event-start" id="event-start" />
 							</div>
-							<div>
+							<div class="add-event_info">
+								<input type="time" name="event-end" id="event-end" required />
 								<label for="event-end">Event time to</label>
-								<input type="time" name="event-end" id="event-end" />
 							</div>
 							<button type="submit">Add Event</button>
 						</form>
