@@ -83,6 +83,8 @@ main {
 	border-radius: 5px;
 	position: relative;
 	margin-bottom: 6rem;
+	display: flex;
+	flex-direction: column;
 }
 
 .calender::before,
@@ -140,6 +142,7 @@ main {
 	border-bottom: 0;
 	margin-bottom: 2rem;
 	font-size: 1.1rem;
+	flex-grow: 1;
 }
 
 .day-list li {
