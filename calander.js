@@ -69,7 +69,7 @@ function createActiveMonthDays(currentMonth) {
 		day.className = 'day';
 		day.innerText = `${i}`;
 		if (isToday && i === today) {
-			day.classList.add('day_today');
+			day.classList.add('day_today', 'day_active');
 		}
 		fragment.appendChild(day);
 	}
