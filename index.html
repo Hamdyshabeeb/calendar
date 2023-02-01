@@ -76,19 +76,21 @@
 					<li class="day day_next-month">1</li>
 				</ul>
 
-				<form class="goto-month">
-					<input
-						type="month"
-						placeholder="YYYY-MM"
-						name="gotoday"
-						id="gotoday"
-						aria-label="gotoday"
-						required
-						aria-required="true"
-					/>
-					<button type="submit">GO</button>
-					<button>Today</button>
-				</form>
+				<div class="goto-month">
+					<form>
+						<input
+							type="month"
+							placeholder="YYYY-MM"
+							name="gotoday"
+							id="gotoday"
+							aria-label="gotoday"
+							required
+							aria-required="true"
+						/>
+						<button type="submit">GO</button>
+					</form>
+					<button class="goto-today" type="button">Today</button>
+				</div>
 			</section>
 			<section class="events">
 				<h2 class="events-title">

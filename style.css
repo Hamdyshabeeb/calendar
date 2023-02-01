@@ -260,14 +260,23 @@ main {
 }
 
 /* calender form */
-form.goto-month {
+
+.goto-month {
 	display: flex;
-	justify-content: flex-start;
-	align-items: center;
+	justify-content: space-between;
+	align-items: stretch;
 	margin-bottom: 1rem;
 	margin-top: auto;
 }
-form.goto-month * {
+
+.goto-month form {
+	width: 50%;
+	display: flex;
+	flex-grow: 1;
+}
+
+.goto-month form *,
+.goto-today {
 	background-color: transparent;
 	border: 1px solid hsl(var(--clr-neutral-400), 0.5);
 	font-size: 1.1rem;
@@ -276,12 +285,12 @@ form.goto-month * {
 }
 
 @media (min-width: 31.25em) {
-	form.goto-month * {
+	.goto-month form * {
 		padding: 0.5rem 0.7rem;
 	}
 }
 @media (min-width: 56.25em) {
-	form.goto-month * {
+	.goto-month form * {
 		color: hsla(var(--clr-neutral-400), 1);
 	}
 }
@@ -291,11 +300,11 @@ form.goto-month * {
 	width: 50%;
 	max-width: 18rem;
 }
-.goto-month button:nth-child(2) {
+.goto-month form button {
 	border-radius: 0 5px 5px 0;
 	border-left: 0;
 }
-.goto-month button:last-child {
+.goto-today {
 	margin-left: auto;
 	border-radius: 5px;
 }
