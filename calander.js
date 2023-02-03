@@ -145,12 +145,6 @@ function getLastDayOfMonth(date) {
  *@param {Date} today
  */
 function checkCurrentDayIsToday(month, today) {
-	console.log(month.currentDay.DayValue);
-	console.log(
-		today.getFullYear() === month.fullYear,
-		today.getMonth() === month.currentMonth.monthValue,
-		today.getDate() === month.currentDay.dayValue
-	);
 	return (
 		today.getFullYear() === month.fullYear &&
 		today.getMonth() === month.currentMonth.monthValue &&
