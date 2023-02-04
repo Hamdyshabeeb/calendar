@@ -1,3 +1,4 @@
+export const activeDate = { year: null, month: null, day: null };
 const monthnames = [
 	'January',
 	'February',
@@ -70,7 +71,11 @@ function createActiveMonthDays(currentMonth) {
 		day.innerText = `${i}`;
 		if (isToday && i === today) {
 			day.classList.add('day_today');
+			//change the active day to today
+			activeDate.day = i;
 		}
+		activeDate.year = currentMonth.fullYear;
+		activeDate.month = currentMonth.currentMonth.monthValue;
 		fragment.appendChild(day);
 	}
 	return fragment;
@@ -150,4 +155,25 @@ function checkCurrentDayIsToday(month, today) {
 		today.getMonth() === month.currentMonth.monthValue &&
 		today.getDate() === month.currentDay.DayValue
 	);
+}
+
+/**
+ *
+ * @param {Function} renderCalender  used to render the calender days
+ * @param {HTMLHeadingElement} calendarHeader h1 of calender section
+ * @param {HTMLUListElement} calendarDayList container of month all days
+ * @param {number} inc number which increment or decrement month value by 1
+ */
+export function changeActiveMonth(
+	renderCalender,
+	calendarHeader,
+	calendarDayList,
+	inc
+) {
+	const date = new Date(activeDate.year, activeDate.month + inc);
+	renderCalender(date, calendarHeader, calendarDayList);
+	document
+		.querySelector('.day:not(.day_prev-month)')
+		.classList.add('day_active');
+	activeDate.day = 1;
 }

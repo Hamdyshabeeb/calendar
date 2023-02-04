@@ -10,11 +10,13 @@ export function calendarFormSubmit(
 	e,
 	renderCalender,
 	calendarHeader,
-	calendarDayList
+	calendarDayList,
+	activeDate
 ) {
 	e.preventDefault();
-	/**@type{string} data of form */
+	/**@type{string} dateString data of form */
 	const dateString = e.target.querySelector('input').value;
+	// split form data to year and month
 	const [year, month] = dateString.split('-');
 	const modal = document.querySelector('.calender-form-error');
 
@@ -37,6 +39,7 @@ export function calendarFormSubmit(
 		calendarHeader,
 		calendarDayList
 	);
+	activeDate.day = 1;
 	document
 		.querySelector('.day:not(.day_prev-month)')
 		.classList.add('day_active');
