@@ -545,6 +545,10 @@ main {
 	color: hsla(var(--clr-neutral-800), 0.9);
 	position: absolute;
 	font-size: 1.4rem;
+	opacity: 0;
+	transform: translateX(-100%);
+	transition: all 0.3s ease;
+	border-radius: 5px;
 }
 
 .calender-form-error span {

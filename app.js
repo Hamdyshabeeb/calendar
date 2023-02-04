@@ -1,4 +1,6 @@
 import renderCalender from './calander.js';
+import { modalWindow } from './ui.js';
+import { calendarFormSubmit } from './form.js';
 /**@type{HTMLHeadingElement||null} */
 const calendarHeader = document.querySelector('.month h1');
 /**@type{HTMLUListElement||null} */
@@ -18,32 +20,4 @@ calendarGotoToday.addEventListener('click', () => {
 	document.querySelector('.day_today').classList.add('day_active');
 });
 // attack onsubmit event to calendar form (go to month)
-calendarGotoMonth.addEventListener('submit', (e) => {
-	e.preventDefault();
-	/**@type{string} data of form */
-	const dateString = e.target.querySelector('input').value;
-	const [year, month] = dateString.split('-');
-
-	if (
-		!(
-			year.length === 4 &&
-			Number.isInteger(parseInt(year)) &&
-			year > 0 &&
-			Number.isInteger(Number.parseInt(month)) &&
-			month > 0 &&
-			month <= 12
-		)
-	) {
-		//todo view modal window to guide user for error
-		return;
-	}
-
-	renderCalender(
-		new Date(year, Number.parseInt(month) - 1),
-		calendarHeader,
-		calendarDayList
-	);
-	document
-		.querySelector('.day:not(.day_prev-month)')
-		.classList.add('day_active');
-});
+calendarGotoMonth.addEventListener('submit', calendarFormSubmit);
