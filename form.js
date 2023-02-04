@@ -2,8 +2,16 @@ import { modalWindow } from './ui.js';
 /**
  *
  * @param {SubmitEvent} e form submit event
+ * @param {Function} renderCalender callback function to call
+ * @param {HTMLHeadingElement}calendarHeader h1 header of the calendar
+ * @param {HTMLUListElement } calendarDayList ul element contain  all calendar days
  */
-export function calendarFormSubmit(e) {
+export function calendarFormSubmit(
+	e,
+	renderCalender,
+	calendarHeader,
+	calendarDayList
+) {
 	e.preventDefault();
 	/**@type{string} data of form */
 	const dateString = e.target.querySelector('input').value;

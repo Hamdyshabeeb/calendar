@@ -9,6 +9,10 @@ const calendarDayList = document.querySelector('.day-list');
 const calendarGotoToday = document.querySelector('.goto-today');
 /**@type {HTMLFormElement||null} */
 const calendarGotoMonth = document.querySelector('.goto-month form');
+/**@type {HTMLButtonElement||null} */
+const calenderFormErrorButton = document.querySelector(
+	'.calender-form-error button'
+);
 
 // render calendar for current month
 renderCalender(new Date(), calendarHeader, calendarDayList);
@@ -19,5 +23,11 @@ calendarGotoToday.addEventListener('click', () => {
 	renderCalender(new Date(), calendarHeader, calendarDayList);
 	document.querySelector('.day_today').classList.add('day_active');
 });
-// attack onsubmit event to calendar form (go to month)
-calendarGotoMonth.addEventListener('submit', calendarFormSubmit);
+// attach onsubmit event to calendar form (go to month)
+calendarGotoMonth.addEventListener('submit', (e) => {
+	calendarFormSubmit(e, renderCalender, calendarHeader, calendarDayList);
+});
+// attach onclick event to modal ok button
+calenderFormErrorButton.addEventListener('click', (e) => {
+	modalWindow(document.querySelector('.calender-form-error'), false);
+});
