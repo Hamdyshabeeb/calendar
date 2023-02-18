@@ -1,5 +1,11 @@
+/**
+ * @module calander
+ */
+
+/**@type{{year:number,month:number,day:number}} */
 export const activeDate = { year: null, month: null, day: null };
-const monthnames = [
+/**@type{string[]} string of month names */
+export const monthnames = [
 	'January',
 	'February',
 	'March',
@@ -13,14 +19,26 @@ const monthnames = [
 	'November',
 	'December',
 ];
-const dayNames = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+/**@type{Array.<string>} */
+export const dayNames = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 /**
  *
  * @param {Date} date is date object
  * @param {HTMLHeadingElement} calenderHeader h1 element
  * @param {HTMLUListElement} calendarDayList ul element
+ * @param {typeof import("./events.js").EventFactory} EventFactory event constructor
+ * @param {HTMLHeadingElement} eventsTitle events section title
+ * @param {HTMLUListElement} eventList events section event list
+ * @param {Array.string}
  */
-export default function renderCalender(date, calenderHeader, calendarDayList) {
+export default function renderCalender(
+	date,
+	calenderHeader,
+	calendarDayList,
+	EventFactory,
+	eventsTitle,
+	eventList
+) {
 	const month = createMonth(date);
 
 	// update calender header text
@@ -30,8 +48,14 @@ export default function renderCalender(date, calenderHeader, calendarDayList) {
 
 	calendarDayList.append(
 		createLastMonthDays(month),
-		createActiveMonthDays(month),
+		createActiveMonthDays(month, EventFactory, eventsTitle, eventList),
 		createNextMonthDays(month)
+	);
+	EventFactory.renderEventSection(
+		eventsTitle,
+		eventList,
+		activeDate,
+		monthnames
 	);
 }
 /**
@@ -58,15 +82,28 @@ function createLastMonthDays(currentMonth) {
 /**
  *
  * @param {{currentDay:{dayName:string,dayValue:number},currentMonth:{monthName:string,monthValue:number},fullYear:number,firstDayName:string,lastDay:{name:string,value:number}}} currentMonth
+ * @param {typeof import("./events.js").EventFactory} EventFactory event constructor
+ * @param {HTMLHeadingElement} eventsTitle events section title
+ * @param {HTMLUListElement} eventList events section event list
  * @returns{DocumentFragment}
  */
-function createActiveMonthDays(currentMonth) {
+function createActiveMonthDays(
+	currentMonth,
+	EventFactory,
+	eventsTitle,
+	eventList
+) {
 	const fragment = document.createDocumentFragment();
 	const todayDate = new Date();
 	const isToday = checkCurrentDayIsToday(currentMonth, todayDate);
 	const today = todayDate.getDate();
 	for (let i = 1; i <= currentMonth.lastDay.value; i++) {
 		const day = document.createElement('li');
+		const dayString = EventFactory.createDayString({
+			year: currentMonth.fullYear,
+			month: currentMonth.currentMonth.monthValue,
+			day: i,
+		});
 		day.className = 'day';
 		day.innerText = `${i}`;
 		if (isToday && i === today) {
@@ -74,10 +111,33 @@ function createActiveMonthDays(currentMonth) {
 			//change the active day to today
 			activeDate.day = i;
 		}
-		activeDate.year = currentMonth.fullYear;
-		activeDate.month = currentMonth.currentMonth.monthValue;
+		// check if that day have events in the event object or not
+		if (EventFactory.checkIfDayStringExistInEvents(dayString)) {
+			day.dataset.event = true;
+		}
+		//add data with the value of day
+		day.dataset.day = i;
+		//attach event listener to change activeDay and chang event section
+		day.addEventListener('click', (e) => {
+			const activeDay = e.target;
+			// change activeDate.day to clicked element value
+			changeCalndarCurrentActiveDate(
+				activeDate,
+				document.querySelector('ul.day-list'),
+				activeDay
+			);
+			// change events section to reflect the active date
+			EventFactory.renderEventSection(
+				eventsTitle,
+				eventList,
+				activeDate,
+				monthnames
+			);
+		});
 		fragment.appendChild(day);
 	}
+	activeDate.year = currentMonth.fullYear;
+	activeDate.month = currentMonth.currentMonth.monthValue;
 	return fragment;
 }
 
@@ -168,12 +228,40 @@ export function changeActiveMonth(
 	renderCalender,
 	calendarHeader,
 	calendarDayList,
-	inc
+	inc,
+	EventFactory,
+	eventsTitle,
+	eventList
 ) {
 	const date = new Date(activeDate.year, activeDate.month + inc);
-	renderCalender(date, calendarHeader, calendarDayList);
+	renderCalender(
+		date,
+		calendarHeader,
+		calendarDayList,
+		EventFactory,
+		eventsTitle,
+		eventList
+	);
 	document
 		.querySelector('.day:not(.day_prev-month)')
 		.classList.add('day_active');
 	activeDate.day = 1;
+}
+/**
+ *
+ * @param {{year:number,month:number,day:number}} activeDate activeObject
+ * @param {HTMLUListElement} dayList days of month list
+ * @param {HTMLLIElement} activeDay current active day
+ */
+function changeCalndarCurrentActiveDate(activeDate, dayList, activeDay) {
+	// change activeDate object day
+	activeDate.day = Number.parseInt(activeDay.dataset.day);
+	/**@type{Array.<HTMLLIElement>} all days*/
+	const allDays = [...dayList.children];
+	// remove day_active from allDays
+	allDays.forEach((day) => {
+		day.classList.remove('day_active');
+	});
+	//add day_active class to the currnet active day
+	activeDay.classList.add('day_active');
 }
